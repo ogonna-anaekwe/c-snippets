@@ -5,14 +5,13 @@
 
 /**
  * Mimics python's string split func.
- * @param str String to split.
- * @param dlm Delimiter to split by.
+ * @param string String to split.
+ * @param delimiter Delimiter to split by.
  * @return char** - "Array" of pointers, with each pointer representing tokens from the original string.
  */
-char **split_str(char *str, char *dlm);
+char **split(char *string, char *delimiter);
 
 /**
- *
  * Usage: ./<executable_name> "<string to split>" "<delimiter>"
  */
 int main(int argc, char *argv[])
@@ -21,25 +20,25 @@ int main(int argc, char *argv[])
 
     char *string = argv[1],
          *dlm = argv[2],
-         **split_string = split_str(string, dlm),
+         **split_string = split(string, dlm),
          **p = split_string;
-
-    while(*p)
+        
+    while (*p)
     {
         puts(*p);
         p++;
     }
-    
+
     free(split_string);
 
     return 0;
 }
 
-char **split_str(char *str, char *dlm)
+char **split(char *string, char *delimiter)
 {
-    char *token = strtok(str, dlm);
+    char *token = strtok(string, delimiter);
 
-    size_t str_len = strlen(str),
+    size_t str_len = strlen(string),
            /**
             * Keeps track of how many char * are needed and
             * by extension how much memory should be eventually allocated.
@@ -50,8 +49,8 @@ char **split_str(char *str, char *dlm)
      * Allocate memory on heap. For starters,
      * this might be way more memory than needed.
      */
-    char **string_split = malloc(str_len);
-    if (!string_split)
+    char **split_string = malloc(str_len);
+    if (!split_string)
     {
         puts("Malloc failed!");
         exit(EXIT_FAILURE);
@@ -59,8 +58,8 @@ char **split_str(char *str, char *dlm)
 
     while (token)
     {
-        string_split[idx] = token;
-        token = strtok(NULL, dlm);
+        split_string[idx] = token;
+        token = strtok(NULL, delimiter);
         idx++;
     }
 
@@ -68,12 +67,12 @@ char **split_str(char *str, char *dlm)
      * Re-allocate prior allocated memory,
      * now with the correct number of bytes.
      */
-    string_split = realloc(string_split, idx);
-    if (!string_split)
+    split_string = realloc(split_string, idx);
+    if (!split_string)
     {
         puts("Realloc failed!");
         exit(EXIT_FAILURE);
     }
 
-    return string_split;
+    return split_string;
 }
