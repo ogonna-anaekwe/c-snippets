@@ -4,12 +4,16 @@
 #include <assert.h>
 
 /**
- * Mimics the split func in python.
- * Usage: ./<executable_name> "<string to split>" "<delimiter>".
- * Returns the original string if it doesn't contain the delimiter.
- * @param argc
- * @param argv
- * @return int
+ * Mimics python's string split func.
+ * @param str String to split.
+ * @param dlm Delimiter to split by.
+ * @return char** - "Array" of pointers, with each pointer representing tokens from the original string.
+ */
+char **split_str(char *str, char *dlm);
+
+/**
+ *
+ * Usage: ./<executable_name> "<string to split>" "<delimiter>"
  */
 int main(int argc, char *argv[])
 {
@@ -17,9 +21,25 @@ int main(int argc, char *argv[])
 
     char *string = argv[1],
          *dlm = argv[2],
-         *token = strtok(string, dlm);
+         **split_string = split_str(string, dlm),
+         **p = split_string;
 
-    size_t str_len = strlen(string),
+    while(*p)
+    {
+        puts(*p);
+        p++;
+    }
+    
+    free(split_string);
+
+    return 0;
+}
+
+char **split_str(char *str, char *dlm)
+{
+    char *token = strtok(str, dlm);
+
+    size_t str_len = strlen(str),
            /**
             * Keeps track of how many char * are needed and
             * by extension how much memory should be eventually allocated.
@@ -55,12 +75,5 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 
-    // for (char **p = string_split; *p; p++)
-    // {
-    //     puts(*p);
-    // }
-
-    free(string_split);
-
-    return 0;
+    return string_split;
 }
