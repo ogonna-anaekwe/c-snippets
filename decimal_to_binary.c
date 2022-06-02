@@ -4,8 +4,8 @@
 
 /**
  * Converts decimal to binary using bitwise operators.
- * Max decimal acceptable for reliable results: 9223372036854775807.
- * This represents the max number for a signed 8-byte int type.
+ * Max decimal for reliable results: 9223372036854775807.
+ * This is the max for a 64-bit signed int type.
  * @param decimal Number to be converted to binary.
  * @return char* - Binary representation of decimal number.
  */
@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
 
 char *decimal_to_binary(long decimal)
 {
-    size_t binary_len = (sizeof(long) * 8);
+    size_t binary_len = sizeof(long) * 8;
     char *binary = malloc(binary_len);
 
     if (!binary)
@@ -38,7 +38,11 @@ char *decimal_to_binary(long decimal)
 
     while (pbinary >= binary)
     {
-        binary[pbinary - binary] = (decimal & 1) ? '1' : '0';
+        /**
+         * + '0' converts (decimal & 1) to the ascii char that corresponds to its value.
+         * i.e 1 + '0' = '1' because '0' is dec 48 and 1 + 48 = 49 which is dec for ascii '1'.
+         */
+        binary[pbinary - binary] = (decimal & 1) + '0';
         decimal >>= 1;
         pbinary--;
     }
