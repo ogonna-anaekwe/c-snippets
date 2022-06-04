@@ -27,12 +27,7 @@ char *decimal_to_binary(long decimal)
 {
     size_t binary_len = sizeof(long) * 8;
     char *binary = malloc(binary_len);
-
-    if (!binary)
-    {
-        puts("Malloc failed!");
-        exit(EXIT_FAILURE);
-    }
+    assert(binary != NULL);
 
     char *pbinary = &binary[binary_len - 1];
 

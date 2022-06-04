@@ -40,12 +40,7 @@ char *clean_str(char *str)
     size_t str_len = strlen(str);
     int i = 0; // keeps track of str_clean's length
     char *c, *str_clean = malloc(str_len + 1);
-        
-    if (!str_clean)
-    {
-        printf("Malloc on line %d failed.\n", __LINE__);
-        exit(EXIT_FAILURE);
-    }
+    assert(str_clean != NULL);
 
     for (c = str; *c != '\0'; c++)
     {
@@ -56,10 +51,6 @@ char *clean_str(char *str)
         }
     }
 
-    /**
-     * Guarantees str_clean is a string
-     */
-    str_clean[i] = '\0';
     return str_clean;
 }
 
@@ -68,7 +59,7 @@ char *is_palindrome(char *str)
     bool is_palindrome;
     int i = 0;
     char *c, *str_clean = clean_str(str), c_comp;
-    size_t str_len = strlen(str_clean);    
+    size_t str_len = strlen(str_clean);
 
     for (c = str_clean; *c != '\0'; c++, i++)
     {
@@ -90,7 +81,7 @@ char *is_palindrome(char *str)
      * De-allocate memory space from heap.
      * De-allocating here rather than in the clean_str function.
      * If de-allocated in the clean_str function, the address
-     * will no longer contain the cleaned string. And the 
+     * will no longer contain the cleaned string. And the
      * result becomes wrong and unreliable.
      */
     free(str_clean);

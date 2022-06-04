@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
          *dlm = argv[2],
          **split_string = split(string, dlm),
          **p = split_string;
-        
+
     while (*p)
     {
         puts(*p);
@@ -50,11 +50,7 @@ char **split(char *string, char *delimiter)
      * this might be way more memory than needed.
      */
     char **split_string = malloc(str_len);
-    if (!split_string)
-    {
-        puts("Malloc failed!");
-        exit(EXIT_FAILURE);
-    }
+    assert(split_string != NULL);
 
     while (token)
     {
@@ -68,11 +64,7 @@ char **split(char *string, char *delimiter)
      * now with the correct number of bytes.
      */
     split_string = realloc(split_string, idx);
-    if (!split_string)
-    {
-        puts("Realloc failed!");
-        exit(EXIT_FAILURE);
-    }
+    assert(split_string != NULL);
 
     return split_string;
 }
