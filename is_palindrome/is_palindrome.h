@@ -17,6 +17,4 @@ char *is_palindrome(char *str);
  */
 char *clean_str(char *str);
 
-char *clean_str(char *str);
-
 #endif //__is_palindrome_h__
