@@ -24,6 +24,8 @@ char *clean_str(char *str)
         }
     }
 
+    str_clean = realloc(str_clean, i);
+
     return str_clean;
 }
 
