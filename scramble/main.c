@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     char *string = argv[1],
          *scrambled_string;
 
-    printf("String: %s\nScrambled:", string);
+    printf("String: %s\n\n\nScrambled:", string);
     char *token = strtok(string, " ");
     int token_len;
 
