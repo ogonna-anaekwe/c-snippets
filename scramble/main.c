@@ -9,10 +9,11 @@ int main(int argc, char *argv[])
     }
 
     char *string = argv[1],
-         *scrambled_string;
+         *scrambled_string,
+         *delimiter = " ";
 
     printf("String: %s\n\n\nScrambled:", string);
-    char *token = strtok(string, " ");
+    char *token = strtok(string, delimiter);
     int token_len;
 
     while (token)
@@ -26,7 +27,7 @@ int main(int argc, char *argv[])
             free(scrambled_string);
         }
 
-        token = strtok(NULL, " ");
+        token = strtok(NULL, delimiter);
     }
     printf("\n");
 
