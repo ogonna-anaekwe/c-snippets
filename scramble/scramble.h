@@ -8,10 +8,10 @@
 
 /**
  * Scrambles a string: randomly repositions all characters but the first and last.
- * @param string String to be scrambled.
+ * @param str String to be scrambled.
  * @return char* Scrambled string.
  */
-char *scramble(const char *string);
+char *scramble(const char *str);
 
 /**
  * Algorithm:
