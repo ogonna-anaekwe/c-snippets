@@ -5,7 +5,7 @@ char *scramble(const char *str)
     srand(time(NULL)); // seeding w/ current time guarantees randomness. if you used a constant seed, you can get repeatable/deterministic results
     int str_len = strlen(str),
         str_cut = 2; // for the first and last char
-    char *scrambled_str = malloc(str_len);
+    char *scrambled_str = (char *)malloc(str_len + 1);
     scrambled_str[0] = str[0];
     scrambled_str[str_len - 1] = str[str_len - 1];
 
@@ -15,7 +15,7 @@ char *scramble(const char *str)
         random_number,
         value,
         *tmp_arr_two,
-        *tmp_arr_one = malloc(int_bytes * substr_len);
+        *tmp_arr_one = (int *)malloc(int_bytes * substr_len);
 
     if (!tmp_arr_one)
     {
@@ -34,7 +34,7 @@ char *scramble(const char *str)
         value = tmp_arr_one[random_number];
         scrambled_str[scrambled_str_idx] = str[value + 1];
 
-        tmp_arr_two = malloc(int_bytes * substr_len);
+        tmp_arr_two = (int *)malloc(int_bytes * substr_len);
         if (!tmp_arr_two)
         {
             fprintf(stderr, "Malloc failed\n");

@@ -19,7 +19,7 @@ char **split(char *string, char *delimiter)
      * Allocate memory on heap. For starters,
      * this might be way more memory than needed.
      */
-    char **split_string = malloc(str_len);
+    char **split_string = (char **)malloc(str_len);
     assert(split_string != NULL);
 
     while (token)

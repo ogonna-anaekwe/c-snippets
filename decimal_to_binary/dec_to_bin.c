@@ -6,7 +6,7 @@
 char *decimal_to_binary(long decimal)
 {
     size_t binary_len = sizeof(long) * 8;
-    char *binary = malloc(binary_len);
+    char *binary = (char *)malloc(binary_len);
     assert(binary != NULL);
 
     char *pbinary = &binary[binary_len - 1];

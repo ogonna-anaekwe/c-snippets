@@ -12,7 +12,7 @@ char *clean_str(char *str)
 {
     size_t str_len = strlen(str);
     int i = 0; // keeps track of str_clean's length
-    char *c, *str_clean = malloc(str_len + 1);
+    char *c, *str_clean = (char *)malloc(str_len + 1);
     assert(str_clean != NULL);
 
     for (c = str; *c != '\0'; c++)
