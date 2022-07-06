@@ -34,7 +34,7 @@ char *scramble(const char *str)
         value = tmp_arr_one[random_number];
         scrambled_str[scrambled_str_idx] = str[value + 1];
 
-        tmp_arr_two = (int *)malloc(int_bytes * substr_len);
+        tmp_arr_two = (int *)malloc(int_bytes * (substr_len - 1));
         if (!tmp_arr_two)
         {
             fprintf(stderr, "Malloc failed\n");
