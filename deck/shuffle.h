@@ -7,7 +7,7 @@
 #include <time.h>
 
 /**
- * @brief Struct for card. Each card has two fields: suit and rank.
+ * Struct for card. Each card has two fields: suit and rank.
  *
  */
 typedef struct card
@@ -17,7 +17,7 @@ typedef struct card
 } card;
 
 /**
- * @brief Create a deck of cards. This deck contains 52 cards.
+ * Create a deck of cards. This deck contains 52 cards.
  *
  * @param deck Array of structs. Each struct is a card. Each card has two fields: suit and rank.
  * @param num_suits Number of suits in a deck (4): clubs, diamonds, spades, hearts.
@@ -26,7 +26,7 @@ typedef struct card
 void create_deck(card deck[], int num_suits, int num_ranks);
 
 /**
- * @brief Generates (pseudo-)random number between low and high (both inclusive).
+ * Generates (pseudo-)random number between low and high (both inclusive).
  *
  * @param low Lower bound for random number.
  * @param high Upper bound for random number.
@@ -35,7 +35,7 @@ void create_deck(card deck[], int num_suits, int num_ranks);
 int random_int(int low, int high);
 
 /**
- * @brief Swaps particular card with randomly selected card.
+ * Swaps particular card with randomly selected card.
  *
  * @param deck Array of structs. Each struct is a card. Each card has two fields: suit and rank.
  * @param card_idx Index of particular card to be swapped.
@@ -44,7 +44,7 @@ int random_int(int low, int high);
 void swap_cards(card deck[], int card_idx, int swap_card_idx);
 
 /**
- * @brief Shuffles deck of cards.
+ * Shuffles deck of cards.
  *
  * @param deck Array of structs. Each struct is a card. Each card has two fields: suit and rank.
  * @param total_cards Total number of cards in deck (52).
@@ -52,7 +52,7 @@ void swap_cards(card deck[], int card_idx, int swap_card_idx);
 void shuffle_deck(card deck[], int total_cards);
 
 /**
- * @brief Prints deck of cards.
+ * Prints deck of cards.
  *
  * @param deck Array of structs. Each struct is a card. Each card has two fields: suit and rank.
  * @param total_cards Total number of cards in deck (52).
