@@ -17,7 +17,7 @@ typedef struct card
 } card;
 
 /**
- * Create a deck of cards. This deck contains 52 cards.
+ * Create a deck of cards. This deck contains 52 cards. https://en.wikipedia.org/wiki/Standard_52-card_deck
  *
  * @param deck Array of structs. Each struct is a card. Each card has two fields: suit and rank.
  * @param num_suits Number of suits in a deck (4): clubs, diamonds, spades, hearts.
