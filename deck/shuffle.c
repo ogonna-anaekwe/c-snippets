@@ -18,7 +18,7 @@ void create_deck(card deck[], int num_suits, int num_ranks)
 int random_int(int low, int high)
 {
     srand(time(NULL));
-    return (rand() % (high - low)) + (low);
+    return (rand() % (high - low)) + low;
 }
 
 void swap_cards(card deck[], int card_idx, int swap_card_idx)
@@ -48,10 +48,12 @@ void print_deck(card deck[], int total_cards, const char *ranks[], const char *s
     int rank_idx = 0,
         suit_idx = 0;
     ptrdiff_t card_idx;
+    card *first_card = deck,
+         *last_card = deck + total_cards - 1;
 
-    for (card *curr_card = deck; curr_card < deck + total_cards; curr_card++)
+    for (card *curr_card = first_card; curr_card <= last_card; curr_card++)
     {
-        card_idx = curr_card - deck;
+        card_idx = curr_card - first_card;
         rank_idx = deck[card_idx].rank;
         suit_idx = deck[card_idx].suit;
         printf("%s of %s\n", ranks[rank_idx], suits[suit_idx]);
