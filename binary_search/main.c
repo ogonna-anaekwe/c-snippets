@@ -7,7 +7,7 @@ int main(void)
     int arr_len = sizeof(arr) / sizeof(arr[0]);
     int target = 21;
 
-    printf(" %d\n", binary_search(arr, arr_len, target));
+    printf("%d\n", binary_search(arr, arr_len, target));
 
     return 0;
 }
