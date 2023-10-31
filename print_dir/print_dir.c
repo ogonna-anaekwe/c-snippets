@@ -29,10 +29,10 @@ void list_dir(char *dir_name)
         {
             char *dirent_name = dp->d_name;
             char *relative_path = get_relative_path(dir_name, dirent_name);
-            bool is_dir = dp->d_type == DT_DIR;
             bool is_curr_dir = strcmp(dirent_name, ".") == 0;
             bool is_parent_dir = strcmp(dirent_name, "..") == 0;
             bool ignore_dot = is_curr_dir || is_parent_dir;
+            bool is_dir = dp->d_type == DT_DIR;
 
             if (is_curr_dir)
                 num_dir++;
