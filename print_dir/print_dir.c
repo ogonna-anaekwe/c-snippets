@@ -16,39 +16,41 @@ char *get_relative_path(char *parent_dir, char *child_dir)
     return relative_path;
 }
 
-void list_dir(char *dir_name)
+void print_dir(char *dir_name)
 {
     DIR *dirp = opendir(dir_name);
-    CHECK_ERROR(dirp, dir_name);
-    struct dirent *dp;
-
-    do
+    if (dirp != NULL) /* only read directories that we have perms for and can open */
     {
-        dp = readdir(dirp);
-        if (dp != NULL)
+        struct dirent *dp;
+
+        do
         {
-            char *dirent_name = dp->d_name;
-            char *relative_path = get_relative_path(dir_name, dirent_name);
-            bool is_curr_dir = strcmp(dirent_name, ".") == 0;
-            bool is_parent_dir = strcmp(dirent_name, "..") == 0;
-            bool ignore_dot = is_curr_dir || is_parent_dir;
-            bool is_dir = dp->d_type == DT_DIR;
+            dp = readdir(dirp);
+            if (dp != NULL)
+            {
+                char *dirent_name = dp->d_name;
+                char *relative_path = get_relative_path(dir_name, dirent_name);
+                bool is_curr_dir = strcmp(dirent_name, ".") == 0;
+                bool is_parent_dir = strcmp(dirent_name, "..") == 0;
+                bool ignore_dot = is_curr_dir || is_parent_dir;
+                bool is_dir = dp->d_type == DT_DIR;
 
-            if (is_curr_dir)
-                num_dir++;
+                if (is_curr_dir)
+                    num_dir++;
 
-            if (ignore_dot)
-                continue;
+                if (ignore_dot)
+                    continue;
 
-            if (is_dir)
-                list_dir(relative_path);
-            else
-                num_files++;
+                if (is_dir)
+                    print_dir(relative_path);
+                else
+                    num_files++;
 
-            free(relative_path);
-            printf("%s/%s \n", dir_name, dirent_name);
-        }
-    } while (dp != NULL);
+                free(relative_path);
+                printf("%s/%s \n", dir_name, dirent_name);
+            }
+        } while (dp != NULL);
 
-    closedir(dirp); /* be a good citizen; close what you open */
+        closedir(dirp); /* be a good citizen; close what you open */
+    }
 }

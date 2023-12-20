@@ -2,10 +2,10 @@
 CC=gcc
 FLAGS= -Wall -Werror -Wpedantic
 
-all: main
+all: print_dir
 
 clean:
-	rm -rf main *.o
+	rm -rf print_dir *.o
 
-main: main.c print_dir.* 
-	$(CC) -o main main.c print_dir.c $(FLAGS)
+print_dir: main.c print_dir.* 
+	$(CC) -o print_dir main.c print_dir.c $(FLAGS)

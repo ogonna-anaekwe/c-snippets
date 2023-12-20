@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
         exit(1);
     }
     char *dir_name = argv[1];
-    list_dir(dir_name);
+    print_dir(dir_name);
     printf("%d dirs; %d files\n", num_dir, num_files);
     return 0;
 }
