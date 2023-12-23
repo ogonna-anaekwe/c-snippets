@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define RECURSIVE true
+
 /**
  * Creates relative path to directory.
  * @param parent_dir
@@ -20,6 +22,6 @@ char *get_relative_path(char *parent_dir, char *child_dir);
  * This is a bare-bones implementation of the unix util 'ls'
  * @param dir_name
  */
-void print_dir(char *dir_name);
+void print_dir(char *dir_name, bool recursive);
 
 #endif // __print_dir_h__

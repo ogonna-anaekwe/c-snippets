@@ -16,7 +16,7 @@ char *get_relative_path(char *parent_dir, char *child_dir)
     return relative_path;
 }
 
-void print_dir(char *dir_name)
+void print_dir(char *dir_name, bool recursive)
 {
     DIR *dirp = opendir(dir_name);
     if (dirp != NULL) /* only read directories that we have perms for and can open */
@@ -42,7 +42,14 @@ void print_dir(char *dir_name)
                     continue;
 
                 if (is_dir)
-                    print_dir(relative_path);
+                {
+                    printf("%s/%s \n", dir_name, dirent_name);
+                    if (recursive)
+                    {
+                        print_dir(relative_path, RECURSIVE);
+                    }
+                    continue;
+                }
                 else
                     num_files++;
 
