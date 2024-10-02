@@ -21,7 +21,7 @@ void *inc_thread_safe(void *arg)
     {
         pthread_mutex_lock(&(counter.lock));
         printf("Counting from thread %d. Current count: %d\n", thread_num, counter.count);
-        counter.count++; // sandwiched by mutex to syncronize threads and prevent race conditions.
+        counter.count++; // sandwiched by mutex to sync threads and prevent race conditions.
         pthread_mutex_unlock(&(counter.lock));
     }
 
